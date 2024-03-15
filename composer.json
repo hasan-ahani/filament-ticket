@@ -1,31 +1,30 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "hasan-ahani/filament-ticket",
+    "description": "Advanced ticket system for filament",
+    "version": "1.0.0",
     "keywords": [
-        ":vendor_name",
+        "hasan-ahani",
         "laravel",
-        ":package_slug"
+        "filament-ticket"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/hasan-ahani/filament-ticket",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/hasan-ahani/filament-ticket/issues",
+        "source": "https://github.com/hasan-ahani/filament-ticket"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Hasan Ahani",
+            "email": "hasanahani.ir@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
-        "spatie/laravel-package-tools": "^1.15.0",
-        "illuminate/contracts": "^10.0"
+        "illuminate/contracts": "^10.0",
+        "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -42,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "HasanAhani\\FilamentTicket\\": "src/",
+            "HasanAhani\\FilamentTicket\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "HasanAhani\\FilamentTicket\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -68,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "HasanAhani\\FilamentTicket\\FilamentTicketServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "FilamentTicket": "HasanAhani\\FilamentTicket\\Facades\\FilamentTicket"
             }
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace HasanAhani\FilamentTicket;
 
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Asset;
@@ -13,14 +13,14 @@ use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
-use VendorName\Skeleton\Testing\TestsSkeleton;
+use HasanAhani\FilamentTicket\Commands\FilamentTicketCommand;
+use HasanAhani\FilamentTicket\Testing\TestsFilamentTicket;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class FilamentTicketServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'skeleton';
+    public static string $name = 'filament-ticket';
 
-    public static string $viewNamespace = 'skeleton';
+    public static string $viewNamespace = 'filament-ticket';
 
     public function configurePackage(Package $package): void
     {
@@ -36,7 +36,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub(':vendor_slug/:package_slug');
+                    ->askToStarRepoOnGitHub('hasan-ahani/filament-ticket');
             });
 
         $configFileName = $package->shortName();
@@ -65,15 +65,15 @@ class SkeletonServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         // Asset Registration
-        FilamentAsset::register(
-            $this->getAssets(),
-            $this->getAssetPackageName()
-        );
-
-        FilamentAsset::registerScriptData(
-            $this->getScriptData(),
-            $this->getAssetPackageName()
-        );
+//        FilamentAsset::register(
+//            $this->getAssets(),
+//            $this->getAssetPackageName()
+//        );
+//
+//        FilamentAsset::registerScriptData(
+//            $this->getScriptData(),
+//            $this->getAssetPackageName()
+//        );
 
         // Icon Registration
         FilamentIcon::register($this->getIcons());
@@ -82,18 +82,18 @@ class SkeletonServiceProvider extends PackageServiceProvider
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
-                    $file->getRealPath() => base_path("stubs/skeleton/{$file->getFilename()}"),
-                ], 'skeleton-stubs');
+                    $file->getRealPath() => base_path("stubs/filament-ticket/{$file->getFilename()}"),
+                ], 'filament-ticket-stubs');
             }
         }
 
         // Testing
-        Testable::mixin(new TestsSkeleton());
+        Testable::mixin(new TestsFilamentTicket());
     }
 
     protected function getAssetPackageName(): ?string
     {
-        return ':vendor_slug/:package_slug';
+        return 'hasan-ahani/filament-ticket';
     }
 
     /**
@@ -102,9 +102,9 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('skeleton', __DIR__ . '/../resources/dist/components/skeleton.js'),
-            Css::make('skeleton-styles', __DIR__ . '/../resources/dist/skeleton.css'),
-            Js::make('skeleton-scripts', __DIR__ . '/../resources/dist/skeleton.js'),
+            // AlpineComponent::make('filament-ticket', __DIR__ . '/../resources/dist/components/filament-ticket.js'),
+            Css::make('filament-ticket-styles', __DIR__ . '/../resources/dist/filament-ticket.css'),
+            Js::make('filament-ticket-scripts', __DIR__ . '/../resources/dist/filament-ticket.js'),
         ];
     }
 
@@ -114,7 +114,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            SkeletonCommand::class,
+            FilamentTicketCommand::class,
         ];
     }
 
@@ -148,7 +148,12 @@ class SkeletonServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_skeleton_table',
+            'create_tickets_table',
+            'create_ticket_messages_table',
+            'create_labels_table',
+            'create_ticket_labels_table',
+            'create_ticket_feedbacks_table',
+            'create_departments_table',
         ];
     }
 }

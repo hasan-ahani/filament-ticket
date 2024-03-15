@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        $tableName = config('filament-ticket.table_names.tickets', 'tickets');
+
+        Schema::create($tableName, function (Blueprint $table) {
+            $table->id();
+            $table->uuid()->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('department_id');
+            $table->string('subject');
+            $table->string('priority', 15)->default('low');
+            $table->string('status', 15)->default('open');
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('department_id')->references('id')->on(config('filament-ticket.table_names.departments', 'departments'));
+        });
+    }
+
+
+    public function down()
+    {
+        $tableName = config('filament-ticket.table_names.tickets', 'tickets');
+
+        Schema::dropIfExists($tableName);
+    }
+};

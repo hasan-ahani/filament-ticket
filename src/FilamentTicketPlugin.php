@@ -1,20 +1,29 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace HasanAhani\FilamentTicket;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use HasanAhani\FilamentTicket\Resources\DepartmentResource;
+use HasanAhani\FilamentTicket\Resources\TicketResource;
 
-class SkeletonPlugin implements Plugin
+class FilamentTicketPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'filament-ticket';
     }
 
     public function register(Panel $panel): void
     {
-        //
+        $panel->navigationGroups([
+
+        ]);
+
+        $panel->resources([
+            TicketResource::class,
+            DepartmentResource::class
+        ]);
     }
 
     public function boot(Panel $panel): void
